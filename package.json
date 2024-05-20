@@ -2,13 +2,16 @@
   "name": "cpa-backend",
   "version": "1.0.0",
   "description": "Creating Rest APIs that allow authenticated users to connect to the CPAgent Database",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Juan Jose Freydell",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "@aws-sdk/client-dynamodb": "^3.577.0",
+    "axios": "^1.7.0",
+    "express": "^4.19.2",
+    "openai": "^4.47.1"
   }
 }
