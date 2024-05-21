@@ -3,7 +3,7 @@ const OpenAI = require('openai')
 
 async function get_openai_client() {
     const openai = await new OpenAI({
-        apiKey: 'sk-proj-DFwD4F5GWeGeZhJQNicFT3BlbkFJJgXj6c8hXIk9QWfnJ4aM'
+        apiKey: ''
     })
 
     return openai;
