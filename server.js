@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const app = express();
 const port = 8080;
@@ -8,7 +9,21 @@ const { get_openai_client,
         list_messages } = require('./utils/openai')
 const { add_item, get_item, item_exists} = require('./dao/in-memory-datastore')
 
+app.use(cors());
+app.get('/register/:user', async (req, res) => {
+    console.log(req);
+    if (!item_exists("user:" + req.params.user)) {
+        add_item("user:" + req.params.user, "");
+    } 
+    res.json({"message": "welcome"});
+    console.log(res);
+})
 app.get('/:user/:message', async (req, res) => {
+    console.log(req);
+    if (!item_exists("user:" + req.params.user)) {
+        res.json({"message": "not registered yet."})
+        return;
+    } 
     const openai = await get_openai_client();
 
     var thread_id;
@@ -26,6 +41,7 @@ app.get('/:user/:message', async (req, res) => {
 
     
     res.json({"message": data});
+    console.log(res);
 })
 
 app.listen(port, () => {
